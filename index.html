@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freelance Hourly & Project Rate Calculator | Zero-Login Free Tool</title>
+  <meta name="description" content="Calculate your minimum freelance hourly rate, daily rate, and project quotes accounting for desired net income, taxes, overhead expenses, non-billable admin time, and profit margins.">
+  <meta name="keywords" content="freelance rate calculator, hourly rate calculator, freelancer project pricing, freelance tax calculator, freelance overhead cost estimator">
+  <link rel="canonical" href="https://freelanceratecalculator.app/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://freelanceratecalculator.app/">
+  <meta property="og:title" content="Freelance Hourly & Project Rate Calculator">
+  <meta property="og:description" content="Accurately estimate your hourly, daily, and project-based pricing considering billable hours, taxes, overhead, and profit buffer.">
+  <meta property="og:image" content="https://freelanceratecalculator.app/og-image.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Freelance Hourly & Project Rate Calculator">
+  <meta property="twitter:description" content="Accurately estimate your hourly, daily, and project-based pricing considering billable hours, taxes, overhead, and profit buffer.">
+
+  <!-- JSON-LD Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Freelance Rate Calculator",
+    "url": "https://freelanceratecalculator.app/",
+    "description": "Professional zero-login financial calculator for freelancers, contractors, and agencies to determine sustainable hourly and project rates.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="background-glow"></div>
+  
+  <header class="navbar">
+    <div class="logo">
+      <span class="icon">💼</span>
+      <span class="title">Freelance Rate Architect</span>
+    </div>
+    <div class="badge">Zero-Login & Privacy-First</div>
+  </header>
+
+  <main class="container">
+    <header class="hero">
+      <h1>Freelance Hourly & Project Rate Calculator</h1>
+      <p>Reverse-engineer your pricing to guarantee profitability. Account for taxes, software overhead, non-billable admin hours, time off, and growth margins.</p>
+    </header>
+
+    <div class="grid">
+      <!-- Input Panel -->
+      <section class="card glass-panel">
+        <h2><span class="step-num">1</span> Financial Goals & Overhead</h2>
+
+        <div class="form-group">
+          <label for="netSalary">Target Take-Home Net Income ($/year)</label>
+          <div class="input-wrapper">
+            <span class="prefix">$</span>
+            <input type="number" id="netSalary" value="95000" min="0" step="1000">
+          </div>
+          <span class="help-text">Desired net salary after all taxes and business costs.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="annualExpenses">Annual Business Overhead ($/year)</label>
+          <div class="input-wrapper">
+            <span class="prefix">$</span>
+            <input type="number" id="annualExpenses" value="8400" min="0" step="100">
+          </div>
+          <span class="help-text">Subscriptions, hardware, accounting, insurance, domain fees.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="taxRate">Estimated Tax Rate (%)</label>
+          <div class="input-wrapper">
+            <input type="number" id="taxRate" value="30" min="0" max="60" step="1">
+            <span class="suffix">%</span>
+          </div>
+          <span class="help-text">Self-employment tax + Federal/State income taxes.</span>
+        </div>
+
+        <h2><span class="step-num">2</span> Time & Billable Capacity</h2>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="workHoursWeek">Work Hours / Week</label>
+            <input type="number" id="workHoursWeek" value="40" min="1" max="80">
+          </div>
+          <div class="form-group">
+            <label for="billablePercent">Billable Time (%)</label>
+            <input type="number" id="billablePercent" value="65" min="10" max="100">
+          </div>
+        </div>
+        <span class="help-text">Average freelancer is 60-70% billable due to sales, invoicing, and marketing.</span>
+
+        <div class="form-row margin-top">
+          <div class="form-group">
+            <label for="vacationWeeks">Vacation & Holidays (Weeks/yr)</label>
+            <input type="number" id="vacationWeeks" value="4" min="0" max="12">
+          </div>
+          <div class="form-group">
+            <label for="sickDays">Sick / Personal Days (Days/yr)</label>
+            <input type="number" id="sickDays" value="10" min="0" max="30">
+          </div>
+        </div>
+
+        <h2><span class="step-num">3</span> Business Safety Buffer</h2>
+        <div class="form-group">
+          <label for="profitMargin">Profit & Growth Margin (%)</label>
+          <div class="input-wrapper">
+            <input type="number" id="profitMargin" value="20" min="0" max="50" step="1">
+            <span class="suffix">%</span>
+          </div>
+          <span class="help-text">Buffer for unexpected scope creep, slow periods, and savings.</span>
+        </div>
+      </section>
+
+      <!-- Output / Results Panel -->
+      <section class="card glass-panel results-section">
+        <h2>Pricing Recommendation Summary</h2>
+
+        <div class="highlight-box">
+          <span class="highlight-label">Minimum Target Hourly Rate</span>
+          <div class="highlight-value" id="hourlyRateDisplay">$0.00</div>
+          <span class="highlight-sub" id="dailyRateDisplay">Daily Rate: $0.00</span>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <span class="metric-title">Gross Annual Revenue Needed</span>
+            <span class="metric-value" id="grossRevenueDisplay">$0</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-title">Total Annual Billable Hours</span>
+            <span class="metric-value" id="billableHoursDisplay">0 hrs</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-title">Estimated Annual Tax Bill</span>
+            <span class="metric-value" id="taxAmountDisplay">$0</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-title">Profit / Reinvestment Buffer</span>
+            <span class="metric-value" id="profitAmountDisplay">$0</span>
+          </div>
+        </div>
+
+        <!-- Project Estimator Tool inside the panel -->
+        <div class="project-calculator-box">
+          <h3>⚡ Quick Project Quote Estimator</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="projectHours">Estimated Project Hours</label>
+              <input type="number" id="projectHours" value="40" min="1">
+            </div>
+            <div class="form-group">
+              <label for="riskMultiplier">Complexity / Scope Risk</label>
+              <select id="riskMultiplier">
+                <option value="1.0">Standard (1.0x)</option>
+                <option value="1.15" selected>Moderate Risk (1.15x)</option>
+                <option value="1.3">High Complexity / Tight Deadline (1.3x)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="project-quote-result">
+            <span>Recommended Project Quote:</span>
+            <strong id="projectQuoteDisplay">$0.00</strong>
+          </div>
+        </div>
+
+        <!-- Revenue Distribution Chart visual bar -->
+        <div class="breakdown-chart-container">
+          <h3>Annual Revenue Allocation</h3>
+          <div class="bar-chart-stacked">
+            <div id="barNet" class="bar-segment net" title="Take Home Net"></div>
+            <div id="barTax" class="bar-segment tax" title="Taxes"></div>
+            <div id="barOverhead" class="bar-segment overhead" title="Overhead"></div>
+            <div id="barProfit" class="bar-segment profit" title="Profit Margin"></div>
+          </div>
+          <div class="chart-legend">
+            <span><i class="dot net"></i> Net Take-Home</span>
+            <span><i class="dot tax"></i> Taxes</span>
+            <span><i class="dot overhead"></i> Overhead</span>
+            <span><i class="dot profit"></i> Profit Buffer</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- SEO Informational Article Section -->
+    <article class="card glass-panel seo-content">
+      <h2>How to Accurately Price Your Freelance Services</h2>
+      <p>Setting hourly rates is one of the most critical decisions for freelancers, agencies, and independent consultants. Simply dividing your target salary by 2,000 working hours leads to severe underpricing because it ignores non-billable hours, self-employment tax liabilities, software overhead, and unpaid time off.</p>
+      
+      <h3>The Reverse-Engineering Formula</h3>
+      <p>This calculator utilizes the standard financial reverse-engineering formula for independent operators:</p>
+      <div class="code-block">
+        <code>Gross Revenue Required = (Net Income Target + Annual Expenses) / (1 - Tax Rate) * (1 + Profit Margin)</code>
+      </div>
+      
+      <h3>Why Non-Billable Time Matters</h3>
+      <p>Unlike traditional employment where 100% of desk time is compensated, freelancers typically spend 30% to 40% of their working hours on administrative duties, sales calls, marketing, invoicing, and proposal writing. Accounting for your exact billable percentage ensures you remain profitable without burning out.</p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Freelance Rate Architect. Free & Open-Source Micro Tool.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
